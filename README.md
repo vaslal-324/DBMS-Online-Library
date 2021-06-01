@@ -11,5 +11,5 @@
  <pre>    a. pip install flask</pre>  
  <pre>    b. pip install flask_mysqldb</pre>   
 </b>
-<b>6. Run the app by typing python app.py from the commane line.</b>   
+<b>6. Run the app by typing python app.py from the commane line.</b></br>  
 <b>7. The server starts running on Port 5000 by default , which can be changed in the app.run() function.</b>  
