@@ -7,5 +7,9 @@
 <b>2. Open the your project folder in the command line ( PowerShell used here , Terminal (PowerShell) was used from VSCode )</b>  
 <b>3. Create a virtual environment : py -3 -m venv 'nameofenv' ( For Windows )</b>  
 <b>4. Activate the virtual environment created : .\env\Scripts\activate.ps1 ( For PowerShell )</b>  
-<b>5. Run the app by typing python app.py from the commane line.</b>  
-<b>6. The server starts running on Port 5000 by default , which can be changed in the app.run() function.</b>  
+<b>5. Install the necessary modules :  
+  a. pip install flask  
+  b. pip install flask_mysqldb  
+</b>
+<b>6. Run the app by typing python app.py from the commane line.</b>  
+<b>7. The server starts running on Port 5000 by default , which can be changed in the app.run() function.</b>  
