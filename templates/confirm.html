@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<style>
+h1 {
+    background-color: #FFF0F5;
+    font-style: italic;
+    color: #00CED1;
+}
+
+h2 {
+    background-color: #FFF0F5;
+    font-style: italic;
+    color: rgb(255, 16, 191);
+}
+
+body {
+    background-color: #FFF0F5;
+}
+
+label {
+    font-size: 20px;
+    color: rgb(240, 16, 191);
+}
+
+td {
+    font-size: 20px;
+    color: rgb(240, 16, 191);
+    padding: 5px 7px;
+    border: 2px solid #00CED1;
+}
+
+th {
+    font-size: 20px;
+    color:blue;
+    padding: 2px 5px;
+    border: 2px solid #00CED1;
+}
+p {
+    font-size: 20px;
+}
+.colgap {
+
+    column-gap: 40px;
+}
+
+.text {
+    text-align:center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+}
+
+.button {
+    background-color:slateblue;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 20px 2px;
+    cursor: pointer;
+}
+
+.subButton {
+    align: center;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.logout {
+    background-color: slateblue;
+    border: none;
+    color: white;
+    padding: 15px 32px; 
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 20px 2px;
+    cursor: pointer;
+}
+.backbutton {
+    background-color: slateblue;
+    border: none;
+    color: white;
+    padding: 15px 32px; 
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 20px 2px;
+    cursor: pointer;
+}
+.menubutton {
+    background-color: slateblue;
+    border: none;
+    color: white;
+    padding: 15px 32px; 
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 20px 2px;
+    cursor: pointer;
+}
+
+</style>
+<body style="background-image: url(../static/5.jpg);background-repeat: no-repeat;background-size: cover;">
+
+<div align='right' style="padding: 0px 0px;">
+    <a class="backbutton" href=" {{ url_for('borrow', email=u[3])}} " role="button" style="padding: 15px 30px;font-size: 20px;"> BACK TO BORROW </a>
+    <a class="logout" href="/logout" role="button" style="padding: 15px 30px; font-size: 20px;"> SIGN OUT </a>
+</div>
+
+
+<h1 style="text-align:center; background-color: initial;"> ORDER REVIEW AND CONFIRMATION </h1>
+
+    <div id="form" align='center'>
+        <form action="{{ url_for('confirm', email = u[3]) }}" method="post">
+
+            <label ><b>USER: {{ u[1] }} {{ u[2] }}</b></label>
+            <br><br>
+
+            <!--<label ><b>ORDER ID : {{ oid }}</b></label>
+            <br>-->
+            <label><b>LIST OF BOOKS IN CART:</b></label>
+            <table border="3px solid" bordercolor="#000000">
+                <tr>
+                    <th><label style="padding: 15px 20px; color: rgb(66, 66, 170);"> NAME </label></th>
+                    <th><label style="padding: 15px 20px; color: rgb(66, 66, 170);"> AUTHOR </label></th>
+                    <th><label style="padding: 15px 20px; color: rgb(66, 66, 170);"> PRICE </label></th>
+                </tr>
+                {% for book in books %}
+                <tr>
+                    <td> {{ book[1] }}</td>
+                    <td> {{ book[2] }}</td>
+                    <td> {{ book[3] }}</td>
+                </tr><br>
+                {% endfor %}
+            </table>
+
+            <br><br>
+            <label><b>DELIVERY ADDRESS: </b></label><label style="color: red;"><b>{{ u[5] }}</b></label>
+            <br><br>
+
+            <label><b>DELIVERY EXECUTIVE DETAILS: </b><br></label><label style="color: red;"><b>{{ emp[1] }} {{ emp[2]}} <br>{{ emp[3] }}</b></label>
+            <br><br>
+
+            <label><b>ORDER DATE: </b><br></label><label style="color: red;"><b>{{ odate }}</b></label>
+            <br>
+
+            <label><b>ESTIMATED TIME OF DELIVERY: </b></label><label style="color: red;"><b>{{ddate}}</b></label>
+            <br><br>
+
+            <label><b>TOTAL AMOUNT: </b></label><label style="color: red;" ><b>{{tot}}</b></label>
+            <br><br>
+
+            <div>
+                {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                    {% for message in messages %}
+                    <h2 style="text-align: center;">{{ message }}</h2>
+                    {% endfor %}
+                  {% endif %}
+                {% endwith %}
+            </div>
+
+          <input type="submit" value="CONFIRM & PLACE ORDER" class="button" style="padding: 15px 30px; font-size: 20px;">
+        </form>
+    </div>
+
+
+</body>
+</html>

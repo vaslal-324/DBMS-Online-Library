@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <body style="background-image: url(../static/1.jpg); background-repeat: no-repeat; background-size: 100% 125%;"></body>
+    <head>
+        <link rel="stylesheet" href="../static/mystyle.css">
+    </head>
+    
+<div>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+        <h1 style="text-align: center;">{{ message }}</h1> 
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+</div>
+
+<div style="padding: 50px 0px;">
+    <h1 style="text-align:center"> LIBRARY AT YOUR DOORSTEP </h1>
+</div>
+
+<div class="text">
+    <p style="font-family:Georgia, 'Times New Roman', Times, serif; font-size: 22px; color:navy; text-transform: uppercase; ">  Website where users can sign up to be members of the library. </p>
+    <p style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 22px; color:maroon; text-transform: uppercase;">  Members have options to borrow, return, view their previous issues. </p>
+    <p style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 22px; color: navy; text-transform:uppercase ; ">  Records of members, books, issues, etc will be stored in a database and the website has options that retrieve and display info from the database based on the members actions. </p>
+</div>
+
+    <div id="index" align='center' style="padding: 100px 0px;">
+        <a class="button" href="/login" role="button" style="font-size: 20px;">LOGIN</a>
+        <a class="button" href="/register" role="button" style="font-size: 20px;">REGISTER</a>
+    </div>
+
+
+</body>
+</html>
+
+
+
+

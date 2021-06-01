@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<body style="background-image: url(../static/5.jpg); background-repeat: no-repeat; background-size: cover;">
+
+<head>
+    <link rel="stylesheet" href="../static/mystyle.css">
+    <style>
+        h1 {
+            color: #00CED1;
+        }
+    </style>
+</head>
+
+<div align='right' style="padding: 0px 0px;">
+    <a class="menubutton" href="/options" role="button"> BACK TO MENU </a>
+    <a class="logout" href="/logout" role="button"> SIGN OUT </a>
+</div>
+
+<div style="padding: 60px 0px;">
+    <h1 style="text-align:center; background-color: initial; font-size: 35px;"> MY RETURNS </h1>
+    <div>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <h2 style="text-align: center;">{{ message }}</h2>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    {% for o in orders %}
+        <br>
+        <div style="border: 2px solid black;" align='center'>
+        <label><b>Order ID: {{o[0]}}</b></label>
+        <br>
+        <table border="3px solid" bordercolor="#000000"  >
+            <tr>
+                <th> NAME </th>
+                <th> AUTHOR </th>
+                <th> PRICE </th>
+            </tr>
+            {% for book in odeets %}
+            {% if book[0]==o[0] %}
+            <tr>
+                <td><b> {{ book[1] }} </b></td>
+                <td><b> {{ book[2] }} </b></td>
+                <td><b> {{ book[3] }} </b></td>
+            </tr><br>
+            {% endif %}
+            {% endfor %}
+        </table>
+        <p><b>FINE: {{o[7]}}</b></p>
+        <p><b>AMOUNT: {{o[6]}}</b></p>
+        <p><b>TOTAL: {{o[8]}}</b></p>
+        <p><b>TOTAL IS INCLUSIVE OF FINE - FINE IS CALCULATED AS 5RS PER DAY FROM THE DAY FOLLOWING THE RETURN DAY</b></p>
+
+        <a class="button" href=" {{ url_for('returnConfirm',email=email,oid=o[0]) }} " role="button">RETURN BOOKS</a>
+        <br><br>
+        </div>
+    {% endfor %}  
+       
+</div>
+</body>
+</html>
+
+
+
+

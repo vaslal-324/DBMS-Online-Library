@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<body style="background-image: url(../static/6.jpg); background-repeat: no-repeat; background-size: cover;;">
+    
+<head>
+    <link rel="stylesheet" href="../static/mystyle.css">
+    <style>
+        h1 {
+            color: #00CED1;
+        }
+        td {
+            font-size: 25px;
+            color:  rgb(209, 9, 166);
+            width: max-content;
+            padding: 10px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+    </style>
+</head>
+
+<div align='right' style="padding: 0px 0px;">
+    <a class="menubutton" href="/options" role="button"> BACK TO MENU </a>
+    <a class="logout" href="/logout" role="button"> SIGN OUT </a>
+</div>
+
+<div style="padding: 50px 0px;">
+    <h1 style="text-align:center"> MY ACCOUNT </h1>
+    <div>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <h2 style="text-align: center">{{ message }}</h2>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div><br>
+    <div align='center'>
+        <table border="3px solid" bordercolor="#000000">
+            <tr><td><b>USER ID</b></td><td><b>{{ userinfo[0] }}</b></td></tr>
+            <tr><td><b>NAME</b></td><td><b>{{ userinfo[1] }} {{ userinfo[2] }}</b></td></tr>
+            <tr><td><b>EMAIL</b></td><td><b>{{ userinfo[3] }}</b></td></tr>
+            <tr><td><b>PHONE NUMBER</b></td><td><b>{{ userinfo[4] }}</b></td></tr>
+            <tr><td><b>ADDRESS</b></td><td><b>{{ userinfo[5] }}</b></td></tr>
+        </table>
+    </div>
+    
+</div>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<body style="background-image: url(../static/5.jpg); background-repeat: no-repeat; background-size: cover;" >
+
+<head>
+    <link rel="stylesheet" href="../static/mystyle.css">
+    <style>
+        h1 {
+            color: #00CED1;
+        }
+        td {
+            font-size: 19px;
+            color:  #3333ff;
+            width: max-content;
+            padding: 7px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        p {
+            color: rgb(160, 7, 7);
+        }
+    </style>
+</head>
+
+</body>
+<div align='right' style="padding: 0px 0px;">
+  <a class="menubutton" href="/options" role="button"> BACK TO MENU </a>
+  <a class="logout" href="/logout" role="button">SIGN OUT</a>
+</div>
+
+<div style="padding: 50px 0px;">
+    <h1 style="text-align:center; background-color: initial;"> MY ORDERS </h1>
+    <div>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+            <h2 style="text-align: center;">{{ message }}</h2>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+    </div>
+
+    
+    {% for order in orders %} <!--iterating over the orders placed by the user-->
+    <div align='center' style="border: 3px solid; border-color: black;">
+    <label><b><br>ORDER ID: {{order[0]}}</b></label><br><br>
+    <table border="3px solid" bordercolor="#000000"  >
+        <tr>
+        <td><b>STATUS</b></td>
+          {% if order[9]=='O' %}
+            <td>On the way</td>
+          {% endif %}
+          {% if order[9]=='D' %}
+            <td>Delivered</td>
+          {% endif %}
+          {% if order[9]=='R' %}
+            <td>Returned</td>
+          {% endif %} 
+        </tr>
+        <tr><td><b>ORDER DATE </b></td><td> {{order[3]}} </td></tr>
+        <tr><td><b>DELIVERY DATE </b></td><td> {{order[4]}} </td></tr>
+        <tr><td><b>RETURN DATE </b></td><td> {{order[5]}} </td></tr>
+        <tr><td style="top: 0px;"><b>DELIVERY EXECUTIVE DETAILS </b></td><td>{{ order[10] }} {{ order[11]}} <br>{{ order[12] }} </td></tr>
+        </table>
+        <br><div class="text" style="color: rgb(160, 7, 7);"><strong>CART:</strong></div><br>
+        <table border="3px solid" bordercolor="#000000">
+            <tr>
+                <th> NAME </th>
+                <th> AUTHOR </th>
+                <th> PRICE </th>
+            </tr>
+        {% for book in odetails %}
+            {% if book[0] == order[0] %}
+            <tr>
+                <td> {{ book[1] }}</td>
+                <td> {{ book[2] }}</td>
+                <td> {{ book[3] }}</td>
+              </tr><br>
+              {% endif %}
+        {% endfor %}
+        </table>
+        <p><b>FINE: </b>{{order[7]}}</p>
+        <p><b>AMOUNT: </b>{{order[6]}}</p>
+        <p><b>TOTAL: </b>{{order[8]}}</p>
+        <p><b>TOTAL IS INCLUSIVE OF FINE - FINE IS CALCULATED AS 5RS PER DAY FROM THE DAY FOLLOWING THE RETURN DAY</b></p>
+    </div>
+    {% endfor %}   
+</div>
+</body>
+</html>
+
+
+
+

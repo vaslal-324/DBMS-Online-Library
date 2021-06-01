@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<body style="background-image: url(../static/8.jpg); background-repeat: no-repeat; background-size: cover;">    
+
+<style>
+h1 {
+    background-color: #FFF0F5;
+    font-style: italic;
+    color: #00CED1;
+}
+
+h2 {
+    background-color: #FFF0F5;
+    font-style: italic;
+    color: rgb(240, 16, 191);
+}
+
+body {
+    background-color: #FFF0F5;
+}
+
+label {
+    font-size: 20px;
+    color: rgb(240, 16, 191);
+}
+
+td {
+    font-size: 15px;
+    color: #ff1a75;
+}
+
+p {
+    font-size: 20px;
+}
+.colgap {
+
+    column-gap: 40px;
+}
+
+.text {
+    text-align:center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+}
+
+.button {
+    background-color:slateblue;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 20px 2px;
+    cursor: pointer;
+}
+
+.subButton {
+    align: center;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.logout {
+    background-color: slateblue;
+    border: none;
+    color: white;
+    padding: 15px 32px; 
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    margin: 20px 2px;
+    cursor: pointer;
+}
+.backbutton {
+    background-color: slateblue;
+    border: none;
+    color: white;
+    padding: 15px 32px; 
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    margin: 20px 2px;
+    cursor: pointer;
+}
+.menubutton {
+    background-color: slateblue;
+    border: none;
+    color: white;
+    padding: 15px 32px; 
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    margin: 20px 2px;
+    cursor: pointer;
+}
+</style>
+<div align=right>
+    <a href="/logout" class="button">SIGN OUT</a>
+</div>
+
+<div>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+        <h1 style="text-align: center;">{{ message }}</h1> 
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+</div>
+
+    <div align='center'>
+        <a href="{{ url_for('delaccount', email='YES') }}" class="button">YES</a>
+        <a href="/options" class="button">NO</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../static/mystyle.css">
+</head>
+<body style="background-image: url(../static/3.jpg); background-repeat: no-repeat; background-size: cover;">
+<style>
+h1 {
+    background-color: #FFF0F5;
+    font-style: italic;
+    color: #00CED1;
+}
+
+h2 {
+    background-color: #FFF0F5;
+    font-style: italic;
+    color: rgb(240, 16, 191);
+}
+
+body {
+    background-color: #FFF0F5;
+}
+
+label {
+    font-size: 20px;
+    color: rgb(240, 16, 191);
+}
+
+td {
+    font-size: 15px;
+    color: #ff1a75;
+}
+
+p {
+    font-size: 20px;
+}
+.colgap {
+
+    column-gap: 40px;
+}
+
+.text {
+    text-align:center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+}
+
+.button {
+    background-color:slateblue;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 20px 2px;
+    cursor: pointer;
+}
+
+.subButton {
+    /*align: center;*/
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.logout {
+    background-color: slateblue;
+    border: none;
+    color: white;
+    padding: 15px 32px; 
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 20px 2px;
+    cursor: pointer;
+}
+.backbutton {
+    background-color: slateblue;
+    border: none;
+    color: white;
+    padding: 15px 32px; 
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 20px 2px;
+    cursor: pointer;
+}
+.menubutton {
+    background-color: slateblue;
+    border: none;
+    color: white;
+    padding: 15px 32px; 
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 20px 2px;
+    cursor: pointer;
+}
+
+.parent {
+    display: block;
+    position: relative;
+    float: left;
+    line-height: 30px;
+    background-color: slateblue;
+    border-right:#CCC 1px solid;
+}
+
+.parent a{
+    margin: 10px;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.parent:hover > ul {
+    display:block;
+    position:absolute;
+}
+.child {display: none;}
+.child li {
+    background-color: #E4EFF7;
+    line-height: 30px;
+    border-bottom:#CCC 1px solid;
+    border-right:#CCC 1px solid; 
+    width:150%;
+}
+.child li a{color: #000000;}
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0px; 
+    min-width:10em;
+}
+ul ul ul{
+    left: 100%;
+    top: 0;
+    margin-left:1px;
+}
+li:hover {background-color: #95B4CA;}
+
+.parent li:hover {background-color: #cfe78e;}
+
+.expand{
+    font-size:12px;
+    float:left;
+    margin-right:5px;
+}
+
+</style>
+<ul id="menu">
+	<li class="parent" style="padding: 10px;"><a href="/account">MY ACCOUNT</a>
+	<ul class="child" style="top: 50px; left: 1.5px;">			
+		<li class="parent"><a href="#">EDIT MY PROFILE<span class="expand">»</span></a>
+			<ul class="child">
+			<li><a href=" {{ url_for('change', what='ADDRESS', email=tup_items[3]) }} "> CHANGE ADDRESS </a></li>
+			<li><a href=" {{ url_for('change', what='PHONE NUMBER', email=tup_items[3]) }} "> CHANGE PHONE NUMBER </a></li>
+			<li><a href=" {{ url_for('change', what='PASSWORD', email=tup_items[3]) }} "> CHANGE PASSWORD </a></li>
+            <li><a href=" {{ url_for('delaccount', email=tup_items[3]) }} "> DELETE ACCOUNT </a></li>
+			</ul>
+		</li>
+		<li><a href="/logout">SIGN OUT</a></li>
+	</ul>
+	</li>
+</ul>
+
+<div style="padding: 155px 0px;">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+        <h1 style="text-align: center;">{{ message }}</h1> 
+        {% endfor %}
+      {% else %}
+      <h1 style="text-align:center; text-transform: uppercase;"> WELCOME {{ tup_items[1] }} {{ tup_items[2] }}<!--{{uid}}--> !!!</h1>
+      {% endif %}
+    {% endwith %}   
+</div>
+
+<div id="index" align='center' style="padding: 100px 0px;">
+    <a class="button" href = "{{ url_for('borrow',email = tup_items[3]) }}" role="button">BORROW</a>
+    <a class="button" href= "{{ url_for('return_book',email = tup_items[3]) }}" role="button">RETURN</a>
+    <a class="button" href="{{ url_for('view_orders',email = tup_items[3]) }}" role="button">VIEW ORDERS</a>
+</div>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<body style="background-image: url(../static/5.jpg); background-repeat: no-repeat; background-size: cover;">    
+
+<head>
+    <link rel="stylesheet" href="../static/mystyle.css">
+    <style>
+        h1 {
+            color: #00CED1;
+        }
+    </style>
+</head>
+
+<div align='right' style="padding: 0px 0px;">
+    <a class="logout" href=" {{ url_for('options_page', email = mail) }} " role="button"> BACK TO MENU </a>
+    <a class="logout" href="/logout" role="button"> SIGN OUT </a>
+</div>
+<div>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+        <h1 style="text-align: center;">{{ message }}</h1> 
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+</div>
+<div style="padding: 40px 0px;">
+    {% if books|length >=1 %}
+    <h1 style="text-align:center; background-color: inherit;"> AVAILABLE BOOKS </h1>
+    <div id="form" style="padding: 0px 300px;">
+        <form action="{{ url_for('borrow', email = mail) }}" method="POST">
+        <table>
+            <tr>
+                <th><label>BOOKS</label></th>
+                <th><label>AUTHORS</label></th>
+            </tr>       
+            {% for x in books %} <!--selecting each row-->
+            <tr>
+                <td style="padding: 0px 30px;"><input type="checkbox" value= "{{ x[0] }}" name="mycheckbox">
+                <label>{{ x[1] }}</label>
+                </td>
+                <td style="padding: 0px 30px;">
+                <label>{{ x[2] }}</label>   
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <div style="text-align: center;">
+            <input type="submit" value="Submit" class="button" style="padding: 10px 25px;">
+        </div>
+        </form>
+        {% else %}
+        <h1 style="background-color: initial;">ALL BOOKS BORROWED</h1>
+    {% endif %}
+    </div>
+</div>
+<div style="padding: 40px 0px; " align = 'center'>
+    {% if booksbor|length >=1 %}
+    <h1 style="text-align:center; background-color: inherit;"> NOT YET AVAILABLE </h1>
+    <table>
+        <tr>
+            <th><label>BOOKS</label></th>
+            <th><label>AUTHORS</label></th>
+        </tr>       
+        {% for x in booksbor %} <!--selecting each row-->
+        <tr>
+            <td style="padding: 0px 30px; width: 350px; ">
+            <label>{{ x[1] }}</label>
+            </td>
+            <td style="padding: 0px 30px; width: 200px; ">
+            <label style="padding-left: 50px;">{{ x[2] }}</label>   
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <h1 style="background-color: initial;">ALL THE BOOKS AVAILABLE</h1>
+    {% endif %}
+</div>
+</body>
+</html>
+
+
+
+
